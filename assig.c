@@ -10,7 +10,7 @@ struct assign{
     int sub_day,sub_month,sub_year;
     char submitted;
     float marks;
-    float totalmarks;
+    
 
 };
 int datelate(struct assign a);
@@ -73,9 +73,9 @@ void addassignment()
     if(a[i].submitted=='Y'|| a[i].submitted=='y')
     {
         printf("\n enter submission date(dd mm yyyy):");
-        scanf("%d %d %d",&a[i].sub_day,&a[i].sub_month,&a[i].sub_year);
+        scanf("%d%d%d",&a[i].sub_day,&a[i].sub_month,&a[i].sub_year);
         printf("\n enter due date (dd mm yyyy):");
-        scanf("%d %d %d",&a[i].due_day,&a[i].due_month,&a[i].due_year);
+        scanf("%d%d%d",&a[i].due_day,&a[i].due_month,&a[i].due_year);
         printf("\n enter marks:");
         scanf("%f",&a[i].marks);
         if(comparedates(a[i])==1)
@@ -99,8 +99,7 @@ void addassignment()
 
 void displayassignment()
  {
-     printf("\n%-6s %-10s %-8s %-10s %-8s %-10s %-10s %-10s\n", "Stu_ID", "Name", "asssign_ID","Submitted","Sub_dates","Due_date","Marks", "Status");
-    printf("----------------------------------------\n");
+    
     for(int j=0;j<i;j++) 
     { 
         printf("\n student id %d",a[j].stu_id); 
@@ -181,7 +180,7 @@ void displayassignment()
     if (fp == NULL)
         return;
 
-    fprintf(fp, "%d %s %d %c %d %d %d %d %d %d %.2f\n", a.stu_id, a.stu_name, a.assign_id, a.submitted,
+    fprintf(fp, "%d\t  %s\t  %d\t  %c\t  %d\t%d\t%d\t  %d\t%d\t%d\t  %.2f\n", a.stu_id, a.stu_name, a.assign_id, a.submitted,
             a.sub_day, a.sub_month, a.sub_year, a.due_day, a.due_month, a.due_year, a.marks);
 
     fclose(fp);
@@ -192,8 +191,9 @@ void loadfromfile()
     FILE *fp = fopen("assig.txt", "r");
     if (fp == NULL)
         return;
+        i=0;
 
-    while (fscanf(fp, "%d %s %d %c %d %d %d %d %d %d %f", &a[i].stu_id,a[i].stu_name,&a[i].assign_id,&a[i].submitted,
+    while (fscanf(fp, "%d\t  %s\t  %d\t  %c\t  %d\t%d\t%d\t  %d\t%d\t%d\t  %f", &a[i].stu_id,a[i].stu_name,&a[i].assign_id,&a[i].submitted,
                   &a[i].sub_day,&a[i].sub_month, &a[i].sub_year, &a[i].due_day,&a[i].due_month,&a[i].due_year, &a[i].marks) != EOF)
     {
         i++;
